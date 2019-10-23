@@ -19,4 +19,8 @@ module Transform
   def upcase(input)
     input.upcase
   end
+
+  def downcase(input)
+    input.downcase
+  end
 end

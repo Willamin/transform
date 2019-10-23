@@ -4,6 +4,7 @@ require "./transform"
 enum Action
   Fullwidth
   Upcase
+  Downcase
   Nothing
 end
 
@@ -17,6 +18,7 @@ parser = OptionParser.new do |parser|
 
   parser.on("-F", "--fullwidth", "fullwidth") { action_to_take = Action::Fullwidth }
   parser.on("-U", "--upcase", "upcase") { action_to_take = Action::Upcase }
+  parser.on("-D", "--downcase", "downcase") { action_to_take = Action::Downcase }
 
   parser.unknown_args { |args| ARGV.replace(args) }
 end
@@ -28,5 +30,6 @@ input = ARGV.join(" ")
 case action_to_take
 when .fullwidth? then puts Transform.fullwidth(input)
 when .upcase?    then puts Transform.upcase(input)
+when .downcase?  then puts Transform.downcase(input)
 when .nothing?   then puts input
 end
