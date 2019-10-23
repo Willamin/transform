@@ -7,6 +7,7 @@ enum Action
   Downcase
   Circle
   Italicize
+  ItalicizeSansSerif
   Nothing
 end
 
@@ -24,6 +25,7 @@ parser = OptionParser.new do |parser|
   parser.on("-C", "--circle", "circle") { action_to_take = Action::Circle }
 
   parser.on("-I", "--italicize", "italicize") { action_to_take = Action::Italicize }
+  parser.on("-S", "--italicize-sans-serif", "italicize sans serif") { action_to_take = Action::ItalicizeSansSerif }
 
   parser.unknown_args { |args| ARGV.replace(args) }
 end
@@ -33,10 +35,11 @@ parser.parse!
 input = ARGV.join(" ")
 
 case action_to_take
-when .fullwidth? then puts Transform.fullwidth(input)
-when .upcase?    then puts Transform.upcase(input)
-when .downcase?  then puts Transform.downcase(input)
-when .circle?    then puts Transform.circle(input)
-when .italicize? then puts Transform.italicize(input)
-when .nothing?   then puts input
+when .fullwidth?            then puts Transform.fullwidth(input)
+when .upcase?               then puts Transform.upcase(input)
+when .downcase?             then puts Transform.downcase(input)
+when .circle?               then puts Transform.circle(input)
+when .italicize?            then puts Transform.italicize(input)
+when .italicize_sans_serif? then puts Transform.italicize_sans_serif(input)
+when .nothing?              then puts input
 end

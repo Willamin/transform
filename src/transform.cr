@@ -59,4 +59,19 @@ module Transform
       end
     end
   end
+
+  def italicize_sans_serif(input : String)
+    String.build do |s|
+      input.each_char do |char|
+        case char.to_s
+        when .match(/[A-Z]/)
+          s << char + 0x1D5C7
+        when .match(/[a-z]/)
+          s << char + 0x1D5C1
+        else
+          s << char
+        end
+      end
+    end
+  end
 end
