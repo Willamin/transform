@@ -6,6 +6,7 @@ enum Action
   Upcase
   Downcase
   Circle
+  Italicize
   Nothing
 end
 
@@ -22,6 +23,8 @@ parser = OptionParser.new do |parser|
   parser.on("-D", "--downcase", "downcase") { action_to_take = Action::Downcase }
   parser.on("-C", "--circle", "circle") { action_to_take = Action::Circle }
 
+  parser.on("-I", "--italicize", "italicize") { action_to_take = Action::Italicize }
+
   parser.unknown_args { |args| ARGV.replace(args) }
 end
 
@@ -34,5 +37,6 @@ when .fullwidth? then puts Transform.fullwidth(input)
 when .upcase?    then puts Transform.upcase(input)
 when .downcase?  then puts Transform.downcase(input)
 when .circle?    then puts Transform.circle(input)
+when .italicize? then puts Transform.italicize(input)
 when .nothing?   then puts input
 end
